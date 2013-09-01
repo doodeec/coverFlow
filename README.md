@@ -2,17 +2,17 @@
 
 ## Quick start
 
-include coverFlow.css
-        '<link rel="stylesheet" href="coverFlow.css">'
+    include coverFlow.css
+        <link rel="stylesheet" href="coverFlow.css">
 
-include jQuery
-        '<script src="jquery.min.js"></script>'
+    include jQuery
+        <script src="jquery.min.js"></script>
 
-include coverFlow.min.js
-        '<script src="coverFlow.min.js"></script>'
+    include coverFlow.min.js
+        <script src="coverFlow.min.js"></script>
 
-create empty div element and in your code, write
-        '$(element).coverFlow({ data: dataArray });'
+    create empty div element and in your code, write
+        $(element).coverFlow({ data: dataArray });
 
 where dataArray is an array filled with image URLs
 
