@@ -134,6 +134,7 @@ body {
     top: 0;
     height: 500px;
     z-index: 1000;
+    cursor: pointer;
 }
 
 .btn.left {
@@ -141,4 +142,29 @@ body {
 }
 .btn.right {
     right: 0;
+}
+.btn.left:after,
+.btn.right:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border: 1em solid transparent;
+    top: 50%;
+    margin-top: -0.5em;
+}
+.btn.left:after {
+    border-right: 1em solid rgba(255,255,255,.5);
+    left: 0;
+}
+.btn.left:hover:after {
+    border-right: 1em solid rgba(255,255,255,.9);
+}
+.btn.right:after {
+    border-left: 1em solid rgba(255,255,255,.5);
+    right: 0;
+}
+.btn.right:hover:after {
+    border-left: 1em solid rgba(255,255,255,.9);
 }

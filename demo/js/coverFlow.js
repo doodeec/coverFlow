@@ -1,7 +1,6 @@
 ;(function($) {
 
     var cfWidth,
-        height = 450,
         spacing = 200,
         current = 0,
         _options = {};
@@ -33,11 +32,13 @@
             img.onload = function() {
                 that._width = this.width;
                 that._height = this.height;
-                that.calculatedWidth = Math.round(this.width*height/this.height);
+                that.calculatedWidth = Math.round(this.width*_options.height/this.height);
 
                 def.resolve(that);
-//                if (_options.reflection) that.drawReflection(img);
-                that.drawReflection(img);
+                if (_options.reflection) {
+                    that.drawReflection(img);
+                }
+//                that.drawReflection(img);
             };
             img.src = this.src;
 
@@ -48,20 +49,20 @@
                 ctx = canvas.getContext('2d'),
                 gradient;
 
-            canvas.height = height;
+            canvas.height = _options.height;
             canvas.width = this.calculatedWidth;
 
-            ctx.drawImage(image,0,0,this.calculatedWidth, height);
+            ctx.drawImage(image,0,0,this.calculatedWidth, _options.height);
 
             //set composite operation for gradient to make image opaque
             ctx.globalCompositeOperation = "destination-out";
 
-            gradient = ctx.createLinearGradient(0,0,0,height);
+            gradient = ctx.createLinearGradient(0,0,0,_options.height);
             gradient.addColorStop(0,"rgba(255,255,255,1)");
             gradient.addColorStop(1,"rgba(255,255,255,0.5)");
 
             ctx.fillStyle = gradient;
-            ctx.rect(0, 0, this.calculatedWidth, height);
+            ctx.rect(0, 0, this.calculatedWidth, _options.height);
             ctx.fill();
         }
     };
@@ -77,16 +78,14 @@
         this._size = this.data.length;
         this._middle = Math.floor(this._size/2);
 
-
-        //TODO options
         _options = {
             //TODO infinite
             infinite: options.infinite || false,
-            reflection: options.reflection || true,
+            reflection: options.reflection || false,
             perspective: options.perspective || 600,
-            buttons: options.buttons || false
+            buttons: options.buttons || false,
+            height: options.height || 450
         };
-
         current = this._middle;
     }
 
@@ -120,22 +119,19 @@
 
                     var elem = that._wrapper.find(".c"+ j.id);
                     if (j.id < current) {
-                        elem.addClass("leftItem")
-                            .css({
-                                'left': j.leftPosition,
-                                'z-index': that._size - (current - j.id)
-                            });
+                        elem.addClass("leftItem").css({
+                            'left': j.leftPosition,
+                            'z-index': that._size - (current - j.id)
+                        });
                     } else if (j.id > current) {
-                        elem.addClass("rightItem")
-                            .css({
-                                'left': j.leftPosition,
-                                'z-index': that._size - (j.id - current)
-                            });
+                        elem.addClass("rightItem").css({
+                            'left': j.leftPosition,
+                            'z-index': that._size - (j.id - current)
+                        });
                     } else {
-                        elem.addClass("highlight")
-                            .css({
-                                'left': j.leftPosition
-                            });
+                        elem.addClass("highlight").css({
+                            'left': j.leftPosition
+                        });
                     }
 
                     if (counter == that._size) {
@@ -149,6 +145,11 @@
             }
 
             this._wrapper.html(toAppend);
+
+            //remove canvases if reflection is disabled
+            if (!_options.reflection) {
+                this._wrapper.find('canvas').remove();
+            }
         },
         repaintElements: function repaintEls() {
             var classes = "highlight leftItem rightItem";
@@ -158,11 +159,9 @@
                     elem = this._wrapper.find(".c"+ object.id);
 
                 if (i < current) {
-                    if (elem.is(":visible")) {
-                        elem.removeClass(classes)
-                            .addClass("leftItem")
-                            .css('z-index', iMax - (current - object.id));
-                    }
+                    elem.removeClass(classes)
+                        .addClass("leftItem")
+                        .css('z-index', iMax - (current - object.id));
                 } else if (i > current) {
                     elem.removeClass(classes)
                         .addClass("rightItem")
@@ -170,7 +169,7 @@
                 } else {
                     elem.removeClass(classes)
                         .addClass("highlight")
-                        .css('z-index', iMax*2);
+                        .css('z-index', 1000);
                 }
             }
         },
@@ -188,11 +187,11 @@
 
             //click events
             btnLeft.bind('click', function(e) {
-                e.preventDefault().stopPropagation();
+                e.preventDefault();
                 that.slide(false,1);
             });
             btnRight.bind('click', function(e) {
-                e.preventDefault().stopPropagation();
+                e.preventDefault();
                 that.slide(true,1);
             });
         },

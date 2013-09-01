@@ -9,7 +9,8 @@
 
     $(".test").coverFlow({
         data: images,
-        buttons: false
+        reflection: true,
+        buttons: true
     });
 
 })(jQuery);

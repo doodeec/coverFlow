@@ -23,22 +23,24 @@ where dataArray is an array filled with image URLs
     available options
         $(element).coverFlow({
             data: dataArray,                // URLs array
-            infinite: true/false            // not ready in 0.1.0
-            perspective: integer,           // sets perspective, not ready in 0.1.0
+            reflection: true/false          // switch on/off reflection
+            infinite: true/false            // not ready in 0.1.1
+            perspective: integer,           // sets perspective, not ready in 0.1.1
             buttons: true/false             // shows buttons for sliding back & forward
         });
 
 ### UI
     supports
         - wheel scrolling
-        - dragging (not ready in 0.1.0)
-        - touch scrolling (not ready in 0.1.0)
-        - infinite loop (not ready in 0.1.0)
+        - dragging (not ready in 0.1.1)
+        - touch scrolling (not ready in 0.1.1)
+        - infinite loop (not ready in 0.1.1)
 
 
 ## Version
 
 ### changes
+        0.1.1 - option for switching reflection on/off + buttons styling
         0.1.0 - initial version
 
 
