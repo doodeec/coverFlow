@@ -3,25 +3,24 @@
 ## Quick start
 
 include coverFlow.css
-        <link rel="stylesheet" href="coverFlow.css">
+        '<link rel="stylesheet" href="coverFlow.css">'
 
 include jQuery
-        <script src="jquery.min.js"></script>
+        '<script src="jquery.min.js"></script>'
 
 include coverFlow.min.js
-        <script src="coverFlow.min.js"></script>
+        '<script src="coverFlow.min.js"></script>'
 
 create empty div element and in your code, write
-        $(element).coverFlow({
-            data: dataArray
-        });
+        '$(element).coverFlow({ data: dataArray });'
 
 where dataArray is an array filled with image URLs
 
 
 ## Features
 
-available options
+### Options
+    available options
         $(element).coverFlow({
             data: dataArray,                // URLs array
             infinite: true/false            // not ready in 0.1.0
@@ -29,7 +28,8 @@ available options
             buttons: true/false             // shows buttons for sliding back & forward
         });
 
-supports
+### UI
+    supports
         - wheel scrolling
         - dragging (not ready in 0.1.0)
         - touch scrolling (not ready in 0.1.0)
@@ -38,7 +38,7 @@ supports
 
 ## Version
 
-changes
+### changes
         0.1.0 - initial version
 
 
