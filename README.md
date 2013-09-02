@@ -22,11 +22,12 @@ where dataArray is an array filled with image URLs
 ### Options
     available options
         $(element).coverFlow({
-            data: dataArray,                // URLs array
-            reflection: true/false          // switch on/off reflection
-            infinite: true/false            // not ready in 0.1.1
-            perspective: integer,           // sets perspective, not ready in 0.1.1
-            buttons: true/false             // shows buttons for sliding back & forward
+            data: dataArray,                    // URLs array
+            reflection: true/false              // switch on/off reflection     false by default
+            infinite: true/false                // not ready in 0.1.1           false by default
+            perspective: integer,               // sets perspective, not ready in 0.1.1
+            buttons: true/false                 // shows buttons for sliding back & forward
+            buttons_style: 'dark'/'light'       // sets buttons style           'dark' by default
         });
 
 ### UI

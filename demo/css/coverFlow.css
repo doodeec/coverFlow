@@ -129,12 +129,19 @@ body {
 .btn {
     display: none;
     position: absolute;
-    background: rgba(0,0,0,.5);
+
     width: 3em;
     top: 0;
     height: 500px;
     z-index: 1000;
     cursor: pointer;
+}
+
+.btn.dark {
+    background: rgba(0,0,0,.5);
+}
+.btn.light {
+    background: rgba(255,255,255,.5);
 }
 
 .btn.left {
@@ -155,16 +162,33 @@ body {
     margin-top: -0.5em;
 }
 .btn.left:after {
-    border-right: 1em solid rgba(255,255,255,.5);
     left: 0;
 }
-.btn.left:hover:after {
-    border-right: 1em solid rgba(255,255,255,.9);
-}
 .btn.right:after {
-    border-left: 1em solid rgba(255,255,255,.5);
     right: 0;
 }
-.btn.right:hover:after {
+
+.btn.dark.left:after {
+    border-right: 1em solid rgba(255,255,255,.5);
+}
+.btn.dark.left:hover:after {
+    border-right: 1em solid rgba(255,255,255,.9);
+}
+.btn.dark.right:after {
+    border-left: 1em solid rgba(255,255,255,.5);
+}
+.btn.dark.right:hover:after {
     border-left: 1em solid rgba(255,255,255,.9);
+}
+.btn.light.left:after {
+    border-right: 1em solid rgba(0,0,0,.5);
+}
+.btn.light.left:hover:after {
+    border-right: 1em solid rgba(0,0,0,.9);
+}
+.btn.light.right:after {
+    border-left: 1em solid rgba(0,0,0,.5);
+}
+.btn.light.right:hover:after {
+    border-left: 1em solid rgba(0,0,0,.9);
 }

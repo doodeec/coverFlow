@@ -38,7 +38,6 @@
                 if (_options.reflection) {
                     that.drawReflection(img);
                 }
-//                that.drawReflection(img);
             };
             img.src = this.src;
 
@@ -84,6 +83,7 @@
             reflection: options.reflection || false,
             perspective: options.perspective || 600,
             buttons: options.buttons || false,
+            buttons_style: options.buttons_style || 'dark',
             height: options.height || 450
         };
         current = this._middle;
@@ -99,6 +99,7 @@
             if (_options.buttons) this.createButtons();
             this.registerScrollEvents();
             //this.registerDragEvents();
+            this.registerTouchEvents();
 
             cfWidth = this._element.width();
         },
@@ -174,8 +175,9 @@
             }
         },
         createButtons: function createBtns() {
-            var buttons = "<div class='btn left'></div>" +
-                "<div class='btn right'></div>";
+            var style = _options.buttons_style;
+            var buttons = "<div class='btn "+style+" left'></div>" +
+                "<div class='btn "+style+" right'></div>";
 
             this._element.append(buttons);
             this.registerBtnEvents();
@@ -235,6 +237,37 @@
         },
         registerTouchEvents: function registerTouch() {
             //TODO touch scroll
+            /*var that = this,
+                dragging = false,
+                counter = 0,
+                startedOn = null;
+
+
+            this._element.bind('touchstart', function(e) {
+                e.preventDefault();
+                dragging = true;
+                startedOn = e.originalEvent.touches[0].clientX;
+            });
+
+            this._element.bind('touchmove', function(e) {
+                e.preventDefault();
+                if (dragging && !counter) {
+                    var xPos = e.originalEvent.touches[0].clientX;
+
+//                    console.log(xPos - startedOn);
+
+                    that._wrapper.css('left', "+=" + (50*(xPos - startedOn)));
+                    startedOn = xPos;
+                }
+                counter == 10 ? counter++ : counter = 0;
+            });
+
+            this._element.bind('touchend', function(e) {
+                e.preventDefault();
+                dragging = true;
+                startedOn = null;
+            });*/
+
 
             //TODO kinetic scroll
         },
