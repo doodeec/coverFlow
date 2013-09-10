@@ -100,7 +100,7 @@
 
             if (_options.buttons) this.createButtons();
             this.registerScrollEvents();
-            //this.registerDragEvents();
+            this.registerDragEvents();
             this.registerTouchEvents();
 
             cfWidth = this._element.width();
@@ -222,8 +222,8 @@
             });
         },
         registerDragEvents: function registerDrag() {
-            //TODO register drag
-            var that = this,
+            //TODO mouse drag scroll
+            /*var that = this,
                 dragging = false,
                 startedOn = null;
 
@@ -244,7 +244,7 @@
 //                    that._wrapper.css('left', that._wrapper.position().left + startedOn - e.offsetX);
 //                    startedOn = e.offsetX;
                 }
-            });
+            });*/
         },
         registerTouchEvents: function registerTouch() {
             //TODO touch scroll
@@ -295,7 +295,9 @@
             // TODO infinite
             if (_options.infinite) {
                 if (direction) {
+
                 } else {
+
                 }
             }
 
