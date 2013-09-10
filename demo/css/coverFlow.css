@@ -50,11 +50,11 @@ body {
     position: absolute;
     float: left;
 
-    -webkit-transition: -webkit-transform 0.5s ease, -webkit-transform-origin 0.5s ease;
-    -moz-transition: -moz-transform 0.5s ease, -moz-transform-origin 0.5s ease;
-    -ms-transition: -ms-transform 0.5s ease, -ms-transform-origin 0.5s ease;
-    -o-transition: -o-transform 0.5s ease, -o-transform-origin 0.5s ease;
-    transition: transform 0.5s ease, transform-origin 0.5s ease;
+    -webkit-transition: -webkit-transform 0.5s ease, -webkit-transform-origin 0.5s ease, left 0.5s ease;
+    -moz-transition: -moz-transform 0.5s ease, -moz-transform-origin 0.5s ease, left 0.5s ease;
+    -ms-transition: -ms-transform 0.5s ease, -ms-transform-origin 0.5s ease, left 0.5s ease;
+    -o-transition: -o-transform 0.5s ease, -o-transform-origin 0.5s ease, left 0.5s ease;
+    transition: transform 0.5s ease, transform-origin 0.5s ease, left 0.5s ease;
 
     -webkit-box-shadow: 0 2px 5px -1px rgba(0,0,0,1);
     -moz-box-shadow: 0 2px 5px -1px rgba(0,0,0,1);
@@ -191,4 +191,8 @@ body {
 }
 .btn.light.right:hover:after {
     border-left: 1em solid rgba(0,0,0,.9);
+}
+
+.hidden {
+    display: none;
 }

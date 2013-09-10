@@ -5,6 +5,8 @@
         current = 0,
         _options = {};
 
+    var screen = 1512;
+
     //widget element constructor
     function CoverFlowItem(id, image) {
         this.id = id;
@@ -153,24 +155,33 @@
             }
         },
         repaintElements: function repaintEls() {
-            var classes = "highlight leftItem rightItem";
+            var classes = "highlight leftItem rightItem hidden",
+                currentPos = this._items[current].leftPosition;
 
             for (var i=0, iMax=this._size; i < iMax; i++) {
                 var object = this._items[i],
+                    oLeftPos = object.leftPosition,
                     elem = this._wrapper.find(".c"+ object.id);
 
-                if (i < current) {
-                    elem.removeClass(classes)
-                        .addClass("leftItem")
-                        .css('z-index', iMax - (current - object.id));
-                } else if (i > current) {
-                    elem.removeClass(classes)
-                        .addClass("rightItem")
-                        .css('z-index', iMax - (object.id - current));
+                if ((oLeftPos > currentPos - screen/2 - 2*spacing) && (oLeftPos < currentPos + screen/2 + 2*spacing)) {
+                    if (oLeftPos < currentPos) {
+                        elem.removeClass(classes)
+                            .addClass("leftItem")
+                            .css('left', oLeftPos)
+                            .css('z-index', iMax - (current - object.id));
+                    } else if (oLeftPos > currentPos) {
+                        elem.removeClass(classes)
+                            .addClass("rightItem")
+                            .css('left', oLeftPos)
+                            .css('z-index', iMax - (object.id - current));
+                    } else {
+                        elem.removeClass(classes)
+                            .addClass("highlight")
+                            .css('left', oLeftPos)
+                            .css('z-index', 1000);
+                    }
                 } else {
-                    elem.removeClass(classes)
-                        .addClass("highlight")
-                        .css('z-index', 1000);
+                    elem.addClass('hidden');
                 }
             }
         },
@@ -275,13 +286,20 @@
             if ( (!direction && current-count < 0) || (direction && current+count >= this._size) ) return;
             current += direction ? count : -count;
 
-            var newPosition = cfWidth/2 - this._items[this._middle].leftPosition
-                + (this._middle - current)*spacing;
+            var distance = direction ? -spacing : spacing;
+            for (var i=0, iMax=this._size; i < iMax; i++) {
+                var a = this._items[i];
+                a.leftPosition += distance;
+            }
+
+            // TODO infinite
+            if (_options.infinite) {
+                if (direction) {
+                } else {
+                }
+            }
 
             this.repaintElements();
-            this._wrapper.css({
-                "left": newPosition
-            })
         }
     };
 
